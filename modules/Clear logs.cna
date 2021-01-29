@@ -1,6 +1,6 @@
-menu "日志清除" {
-  item "清除系统日志" {
-    prompt_text("再次确认清除系统日志：", "请详细阅读网络安全法", lambda({
+menu "Log Clear" {
+  item "clear system log" {
+    prompt_text("Reconfirm to clear the system log:", "Please read the Network Security Law in detail", lambda({
       bshell(@ids, "wevtutil cl security");
       bshell(@ids, "wevtutil cl system");
       bshell(@ids, "wevtutil cl application");
