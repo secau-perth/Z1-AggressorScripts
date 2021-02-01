@@ -2,7 +2,7 @@ menu "Intranet penetration" {
 	menu "frpModify (no need to land frpc.ini)" {
 		item "upload frpc" {
 			$bid = $1;
-			$dialog = dialog("上传frpc", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &frp_upload);
+			$dialog = dialog("upload frpc", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &frp_upload);
 			dialog_description($dialog,"frp specifies the parameter version (no need for frpc.ini landing). Project address: https://github.com/uknowsec/frpModify");
 			drow_text($dialog, "UploadPath", "Upload Path: ");
 			dbutton_action($dialog, "Upload");
@@ -18,12 +18,12 @@ menu "Intranet penetration" {
 		}
 		item "Run frpc" {
 			$bid = $1['@'];
-			$Dialog = dialog("运行frpc",%(ip => "x.x.x.x", port => "2333",bid => $bid),&frpc_run);
-			dialog_description($Dialog, "Run frpc, use frpModify, specify the parameters, socks5 port is 23333.");
-			drow_text($Dialog, "ip", "ip: ");
-			drow_text($Dialog, "port", "port: ");
-			dbutton_action($Dialog, "Run");
-			dialog_show($Dialog);
+			$dialog = dialog("run frpc",%(ip => "x.x.x.x", port => "2333",bid => $bid),&frpc_run);
+			dialog_description($dialog, "Run frpc, use frpModify, specify the parameters, socks5 port is 23333.");
+			drow_text($dialog, "ip", "ip: ");
+			drow_text($dialog, "port", "port: ");
+			dbutton_action($dialog, "Run");
+			dialog_show($dialog);
 		}
 		sub frpc_run{
 			local('$Name $port');
@@ -48,7 +48,7 @@ menu "Intranet penetration" {
 	menu "nps (no configuration file landing)" {
 		item "upload npc" {
 			$bid = $1;
-			$dialog = dialog("上传npc", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &npc_upload);
+			$dialog = dialog("upload npc", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &npc_upload);
 			dialog_description($dialog,"A lightweight, high-performance, and powerful intranet penetration proxy server. It supports almost all traffic forwarding such as tcp, udp, socks5, http, etc. Use reference: https://mp.weixin. qq.com/s/zI04_kxVFWdnegctAzNmmg. Project address: https://github.com/ehang-io/nps");
 			drow_text($dialog, "UploadPath", "Upload Path: ");
 			dbutton_action($dialog, "Upload");
@@ -61,12 +61,12 @@ menu "Intranet penetration" {
 		}
 		item "Run npc" {
 			$bid = $1['@'];
-			$Dialog = dialog("运行npc",%(server => "ip:8024", vkey => "",bid => $bid),&npc_run);
-			dialog_description($Dialog, "Run npc, no configuration file landing, use reference: https://mp.weixin.qq.com/s/zI04_kxVFWdnegctAzNmmg.");
-			drow_text($Dialog, "server", "server: ");
-			drow_text($Dialog, "vkey", "vkey: ");
-			dbutton_action($Dialog, "Run");
-			dialog_show($Dialog);
+			$dialog = dialog("run npc",%(server => "ip:8024", vkey => "",bid => $bid),&npc_run);
+			dialog_description($dialog, "Run npc, no configuration file landing, use reference: https://mp.weixin.qq.com/s/zI04_kxVFWdnegctAzNmmg.");
+			drow_text($dialog, "server", "server: ");
+			drow_text($dialog, "vkey", "vkey: ");
+			dbutton_action($dialog, "Run");
+			dialog_show($dialog);
 		}
 		sub npc_run{
 			local('$server $vkey');
@@ -91,7 +91,7 @@ menu "Intranet penetration" {
 	menu "NATBypass (Port Forwarding)" {
 		item "upload nb" {
 			$bid = $1;
-			$dialog = dialog("上传nb", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &nb);
+			$dialog = dialog("upload nb", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &nb);
 			dialog_description($dialog,"An implementation of lcx under golang. Project address: https://github.com/cw1997/NATBypass");
 			drow_text($dialog, "UploadPath", "Upload Path: ");
 			dbutton_action($dialog, "Upload");
@@ -107,12 +107,12 @@ menu "Intranet penetration" {
 		}
 		item "Run nb" {
 			$bid = $1['@'];
-			$Dialog = dialog("运行nb",%(lhost => "127.0.0.1:3389", rhost => "x.x.x.x:1997",bid => $bid),&nb_run);
-			dialog_description($Dialog, "vps运行：./nb -listen 1997 2017");
-			drow_text($Dialog, "lhost", "本地IP:Port ");
-			drow_text($Dialog, "rhost", "公网IP:Port ");
-			dbutton_action($Dialog, "Run");
-			dialog_show($Dialog);
+			$dialog = dialog("run nb",%(lhost => "127.0.0.1:3389", rhost => "x.x.x.x:1997",bid => $bid),&nb_run);
+			dialog_description($dialog, "vpsrun ：./nb -listen 1997 2017");
+			drow_text($dialog, "lhost", "Local IP:Port ");
+			drow_text($dialog, "rhost", "Public IP:Port ");
+			dbutton_action($dialog, "Run");
+			dialog_show($dialog);
 		}
 		sub nb_run{
 			local ('$lhost $roast');
@@ -137,7 +137,7 @@ menu "Intranet penetration" {
 	menu "iox (port forwarding and socks5)" {
 		item "Upload iox" {
 			$bid = $1;
-			$dialog = dialog("上传iox", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &iox);
+			$dialog = dialog("upload iox", %(UploadPath => "C:\\Windows\\Temp\\", bid => $bid), &iox);
 			dialog_description($dialog,"Port forwarding tool and socks5 proxy. Project address: https://github.com/EddieIvan01/iox");
 			drow_text($dialog, "UploadPath", "Upload Path: ");
 			dbutton_action($dialog, "Upload");
@@ -153,13 +153,13 @@ menu "Intranet penetration" {
 		}
 		item "Run iox(fwd)" {
 			$bid = $1['@'];
-			$Dialog = dialog("运行iox",%(lhost => "192.168.0.100:3389", rhost => "*x.x.x.x:3389", hex => "656565",bid => $bid),&iox_fwdrun);
-			dialog_description($Dialog, "vps运行：./iox fwd -l *3389 -l 33890 -k 656565");
-			drow_text($Dialog, "lhost", "本地IP:Port ");
-			drow_text($Dialog, "rhost", "公网IP:Port ");
-			drow_text($Dialog, "hex", "Traffic encryption key: ");
-			dbutton_action($Dialog, "Run");
-			dialog_show($Dialog);
+			$dialog = dialog("run iox",%(lhost => "192.168.0.100:3389", rhost => "*x.x.x.x:3389", hex => "656565",bid => $bid),&iox_fwdrun);
+			dialog_description($dialog, "vpsrun ：./iox fwd -l *3389 -l 33890 -k 656565");
+			drow_text($dialog, "lhost", "Local IP:Port ");
+			drow_text($dialog, "rhost", "Public IP:Port ");
+			drow_text($dialog, "hex", "Traffic encryption key: ");
+			dbutton_action($dialog, "Run");
+			dialog_show($dialog);
 		}
 		sub iox_fwdrun{
 			local ('$lhost $roast $hex');
@@ -171,12 +171,12 @@ menu "Intranet penetration" {
 
 		item "Run iox(proxy)"{
 			$bid = $1['@'];
-			$Dialog = dialog("运行iox",%(rhost => "*x.x.x.x:9999", hex => "000102",bid => $bid),&iox_proxyrun);
-			dialog_description($Dialog, "vps first create service: ./iox proxy -l *9999 -l 1080 -k 000102");
-			drow_text($Dialog, "rhost", "公网IP:Port ");
-			drow_text($Dialog, "hex", "Traffic encryption key: ");
-			dbutton_action($Dialog, "Run");
-			dialog_show($Dialog);
+			$dialog = dialog("run iox",%(rhost => "*x.x.x.x:9999", hex => "000102",bid => $bid),&iox_proxyrun);
+			dialog_description($dialog, "vps first create service: ./iox proxy -l *9999 -l 1080 -k 000102");
+			drow_text($dialog, "rhost", "Public IP:Port ");
+			drow_text($dialog, "hex", "Traffic encryption key: ");
+			dbutton_action($dialog, "Run");
+			dialog_show($dialog);
 		}
 		sub iox_proxyrun{
 			local ('$roast $hex');
